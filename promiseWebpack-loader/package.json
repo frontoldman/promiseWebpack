@@ -1,0 +1,31 @@
+{
+  "name": "promisedirname-loader",
+  "version": "1.0.0",
+  "author": {
+    "name": "zr"
+  },
+  "description": "a webpack bundle-loader ripoff with promise interface named with dirname",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:frontoldman/promiseWebpack.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "gitHead": "7e6e311e3923996fb2bd6f6e01c9b9137b55ad9b",
+  "bugs": {
+    "url": "https://github.com/frontoldman/promisedirname-loade/issues"
+  },
+  "homepage": "https://github.com/frontoldman/promisedirname-loader",
+  "_id": "promisedirname-loader@1.0.0",
+  "scripts": {},
+  "_shasum": "4cd7a0789d0976ad4bb778869f4d7adfb83f567b",
+  "_from": "promisedirname-loader@*",
+  "_npmVersion": "2.11.0",
+  "_nodeVersion": "2.2.1",
+  "readme": "## A sister of [bundle-loader](https://github.com/webpack/bundle-loader) with promise API\n\n### Usage\n\n[Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)\n\n添加了一个名称使用上一层目录名称＋文件名命名的方式\n\nThis is a ripoff of [bundle-loader](https://github.com/webpack/bundle-loader) that uses promises instead of callbacks.\nIt only implements so-called `lazy` `bundle-loader` mode—that is, `require` returns a function that, when invoked, returns a promise that resolves to the module.\n\n`require: (string) -> () -> Promise<module>`\n\nIt's up to you to specify your Promise library of choice as a parameter.\n\n``` javascript\n// Assuming you use Bluebird\nvar load = require(\"promise?bluebird!./file.js\");\n\n// The chunk is not requested until you call the load function\nload().then(function(file) {\n\n});\n```\n\nIf a promise library is already loaded externally you can specify 'global'.  \n\n\nYou can optionally specify [a name for your chunk](http://webpack.github.io/docs/code-splitting.html#named-chunks) after a comma:\n\n```javascript\nvar load = require(\"promise?bluebird,editor!./editor.js\");\n```\n\nThis can be useful for [single-page apps](http://webpack.github.io/docs/optimization.html#single-page-app) because you can later extract filenames from [Webpack-generated stats](https://github.com/webpack/docs/wiki/node.js-api#stats) and pre-load specific bundles if you know user's going to hit them.\n\nThe bundle name may include `[filename]`, which will be replaced with the filename, and `[name]`, which omits the extension. This is useful for when you want to configure loaders in Webpack configuration without specifying precise filenames—for example, by a suffix:\n\n```javascript\n{\n  test: /\\.i18n\\.json$/,\n  loader: 'promise?global,[name].i18n'\n}\n```\n\n### License\n\nMIT (http://www.opensource.org/licenses/mit-license.php)\n\n",
+  "readmeFilename": "README.md"
+}
